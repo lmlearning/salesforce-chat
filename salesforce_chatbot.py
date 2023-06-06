@@ -10,7 +10,7 @@ from llama_index import StorageContext, load_index_from_storage
 from streamlit_chat import message
 
 #
-os.environ["openai_api_key"] = st.secrets['openai_api_key']
+os.environ["openai_api_key"] =  st.secrets['openai_api_key']
 
 st.set_page_config(
     page_title="Salesforce Chat - Demo",
@@ -20,7 +20,7 @@ st.set_page_config(
 @st.cache_resource
 def get_index_and_agent():
     # rebuild storage context
-    storage_context = StorageContext.from_defaults(persist_dir=".\\storage")
+    storage_context = StorageContext.from_defaults(persist_dir="storage")
 
     # load index
     index = load_index_from_storage(storage_context)
