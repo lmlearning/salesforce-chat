@@ -1,11 +1,8 @@
 import streamlit as st
 from langchain.agents import Tool
-from langchain.schema import Memory
 from langchain.chains.conversation.memory import ConversationBufferMemory
 from langchain.chat_models import ChatOpenAI
 from langchain.agents import initialize_agent
-from llama_index import GPTVectorStoreIndex
-import os
 from llama_index import StorageContext, load_index_from_storage
 from streamlit_chat import message
 
@@ -34,7 +31,7 @@ def get_index_and_agent():
 
     # set Logging to DEBUG for more detailed outputs
     memory = ConversationBufferMemory(memory_key="chat_history")
-    llm = ChatOpenAI(temperature=0)
+    llm = ChatOpenAI(temperature=0.3)
     agent_executor = initialize_agent(tools, llm, agent="conversational-react-description", memory=memory)
     return index, agent_executor
 
