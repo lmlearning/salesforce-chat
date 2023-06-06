@@ -34,7 +34,7 @@ def get_index_and_agent():
 
     # set Logging to DEBUG for more detailed outputs
     memory = ConversationBufferMemory(memory_key="chat_history")
-    llm = ChatOpenAI(temperature=0.5, openai_api_key=st.secrets['openai_api_key'])
+    llm = ChatOpenAI(temperature=0.5)
     agent_executor = initialize_agent(tools, llm, agent="conversational-react-description", memory=memory)
     return index, agent_executor
 
