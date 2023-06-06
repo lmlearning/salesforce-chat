@@ -9,8 +9,6 @@ import os
 from llama_index import StorageContext, load_index_from_storage
 from streamlit_chat import message
 
-#
-os.environ["openai_api_key"] =  st.secrets['openai_api_key']
 
 st.set_page_config(
     page_title="Salesforce Chat - Demo",
@@ -36,7 +34,7 @@ def get_index_and_agent():
 
     # set Logging to DEBUG for more detailed outputs
     memory = ConversationBufferMemory(memory_key="chat_history")
-    llm = ChatOpenAI(temperature=0.5)
+    llm = ChatOpenAI(temperature=0.5, openai_api_key=st.secrets['openai_api_key'])
     agent_executor = initialize_agent(tools, llm, agent="conversational-react-description", memory=memory)
     return index, agent_executor
 
