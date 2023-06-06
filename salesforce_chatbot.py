@@ -54,7 +54,13 @@ def get_text():
 user_input = get_text()
 
 if user_input:
-    output = agent_executor.run(input=user_input)
+    try:
+        output = agent_executor.run(input=user_input)
+    except Exception as e:
+        response = str(e)
+        if response.startswith("Could not parse LLM output: `"):
+            output = response.removeprefix("Could not parse LLM output: `").removesuffix("`")
+    
     st.session_state.past.append(user_input)
     st.session_state.generated.append(output)
     input_text = ""
